@@ -136,6 +136,16 @@ The last line of output should look similar to the following:
 Service [{ACCOUNT_NAME}] revision [{ACCOUNT_NAME}-00018] has been deployed and is serving 100 percent of traffic at https://{ACCOUNT_NAME}-fi6eeq56la-uc.a.run.app
 ```
 
+### View Logs
+
+1. Browse to: https://console.cloud.google.com/run?project=cs291-f19
+
+2. Click on the service with your ACCOUNT_NAME
+
+3. Click on "LOGS"
+
+4. Browse logs, and consider changing the filter to "Warning" to find more pressing issues.
+
 ## Resources
 
 - https://cloud.google.com/run/docs/quickstarts/build-and-deploy
