@@ -126,6 +126,7 @@ gcloud beta run deploy \
   --project cs291-f19 \
   --region us-central1 \
   --service-account project1@cs291-f19.iam.gserviceaccount.com \
+  --set-env-vars RACK_ENV=production \
   ${CS291_ACCOUNT}
 ```
 
