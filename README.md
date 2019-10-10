@@ -66,7 +66,10 @@ gcloud auth configure-docker
 
 ## Develop Locally
 
-Edit your file however you want then follow the next two steps to test your
+The following commands are intended to be run from within the directory
+containing your project (e.g., your copy of this repository).
+
+Edit your `app.rb` file however you want then follow the next two steps to test your
 application:
 
 ### Build Container
