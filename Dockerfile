@@ -1,6 +1,5 @@
-FROM ruby:2.6
+FROM ruby:3
 
-ENV BUNDLER_VERSION 2.0.2
 WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
