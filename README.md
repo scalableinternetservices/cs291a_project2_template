@@ -9,7 +9,8 @@ The following steps should only need to be done once:
 Add the following to your `.bash_profile` script, or similar for your shell:
 
 ```sh
-# If your ucsb email is user_1@ucsb.edu, then YOUR_ACCOUNT_NAME is user-1
+# If your ucsb email is user@ucsb.edu, then YOUR_ACCOUNT_NAME is user
+#
 # Note: If you have an underscore in your account name, please replace with a hypen.
 export CS291_ACCOUNT=YOUR_ACCOUNT_NAME
 ```
@@ -30,20 +31,20 @@ gcloud auth login
 ### Verify the above works
 
 ```sh
-gcloud projects describe cs291-f19
+gcloud projects describe cs291a
 ```
 
 The above should produce the following output:
 
 ```
-createTime: '2019-07-18T19:28:19.613Z'
+createTime: '2020-12-29T18:55:55.506Z'
 lifecycleState: ACTIVE
-name: cs291-f19
+name: cs291a
 parent:
-  id: '867683236978'
-  type: organization
-projectId: cs291-f19
-projectNumber: '689092254566'
+  id: '254441457261'
+  type: folder
+projectId: cs291a
+projectNumber: '318955983951'
 ```
 
 ### Create Application Default Credentials
@@ -61,7 +62,7 @@ Follow the instructions here: https://www.docker.com/products/docker-desktop
 ### Link Docker and Gcloud
 
 ```sh
-gcloud auth configure-docker
+gcloud auth configure-docker us.gcr.io
 ```
 
 ## Develop Locally
@@ -75,7 +76,7 @@ application:
 ### Build Container
 
 ```sh
-docker build -t us.gcr.io/cs291-f19/project2_${CS291_ACCOUNT} .
+docker build -t us.gcr.io/cs291a/project2_${CS291_ACCOUNT} .
 ```
 
 ### Run Locally
@@ -84,7 +85,7 @@ docker build -t us.gcr.io/cs291-f19/project2_${CS291_ACCOUNT} .
 docker run -it --rm \
   -p 3000:3000 \
   -v ~/.config/gcloud/application_default_credentials.json:/root/.config/gcloud/application_default_credentials.json \
-  us.gcr.io/cs291-f19/project2_${CS291_ACCOUNT}
+  us.gcr.io/cs291a/project2_${CS291_ACCOUNT}
 ```
 
 ### Test Using CURL
@@ -114,7 +115,7 @@ following two steps:
 ### Push Container to Google Container Registry
 
 ```sh
-docker push us.gcr.io/cs291-f19/project2_${CS291_ACCOUNT}
+docker push us.gcr.io/cs291a/project2_${CS291_ACCOUNT}
 ```
 
 ### Deploy to Google Cloud Run
@@ -123,12 +124,12 @@ docker push us.gcr.io/cs291-f19/project2_${CS291_ACCOUNT}
 gcloud beta run deploy \
   --allow-unauthenticated \
   --concurrency 80 \
-  --image us.gcr.io/cs291-f19/project2_${CS291_ACCOUNT} \
+  --image us.gcr.io/cs291a/project2_${CS291_ACCOUNT} \
   --memory 128Mi \
   --platform managed \
-  --project cs291-f19 \
+  --project cs291a \
   --region us-central1 \
-  --service-account project2@cs291-f19.iam.gserviceaccount.com \
+  --service-account project2@cs291a.iam.gserviceaccount.com \
   --set-env-vars RACK_ENV=production \
   ${CS291_ACCOUNT}
 ```
@@ -136,12 +137,12 @@ gcloud beta run deploy \
 The last line of output should look similar to the following:
 
 ```
-Service [{ACCOUNT_NAME}] revision [{ACCOUNT_NAME}-00018] has been deployed and is serving 100 percent of traffic at https://{ACCOUNT_NAME}-fi6eeq56la-uc.a.run.app
+Service [{ACCOUNT_NAME}] revision [{ACCOUNT_NAME}-00018] has been deployed and is serving 100 percent of traffic at https://{ACCOUNT_NAME}-66egyap56q-uc.a.run.app
 ```
 
 ### View Logs
 
-1. Browse to: https://console.cloud.google.com/run?project=cs291-f19
+1. Browse to: https://console.cloud.google.com/run?project=cs291a
 
 2. Click on the service with your ACCOUNT_NAME
 
